@@ -1,0 +1,208 @@
+body {
+    background: #1a0f0a;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui, sans-serif;
+  }
+  
+  .carousel-container {
+    position: relative;
+    width: 1000px;
+    height: 600px;
+    background: rgb(228, 115, 78);
+    border-radius: 48px;
+    box-shadow: 0 12px 120px rgb(62, 30, 19);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .carousel-track {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .carousel-item {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition:
+      top 0.5s cubic-bezier(.4,0,.2,1),
+      width 0.5s cubic-bezier(.4,0,.2,1),
+      height 0.5s cubic-bezier(.4,0,.2,1),
+      opacity 0.5s cubic-bezier(.4,0,.2,1),
+      transform 0.5s cubic-bezier(.4,0,.2,1),
+      box-shadow 0.5s cubic-bezier(.4,0,.2,1),
+      border-radius 0.3s cubic-bezier(.4,0,.2,1);
+    border-radius: 24px;
+    overflow: hidden;
+    background: #fff;
+    opacity: 1;
+    cursor: pointer;
+    z-index: 1;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.16);
+  }
+  
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+    pointer-events: none;
+  }
+  
+  .carousel-item.center {
+    width: 92%;
+    height: 380px;
+    top: 60px;
+    z-index: 3;
+    opacity: 1;
+    box-shadow: 0 12px 48px rgba(62, 30, 19, 0.3);
+    transform: translateX(-50%);
+  }
+  
+  .carousel-item.above {
+    width: 90%;
+    height: 60px;
+    top: -15px;
+    z-index: 2;
+    opacity: 0.8;
+    transform: translateX(-50%);
+    transform-origin: top center;
+  }
+  
+  .carousel-item.below {
+    width: 90%;
+    height: 60px;
+    top: 455px;
+    z-index: 2;
+    opacity: 0.8;
+    transform: translateX(-50%);
+    transform-origin: bottom center;
+  }
+  
+  .carousel-item.hidden {
+    pointer-events: none;
+    z-index: 1;
+    height: 0;
+  }
+
+  .carousel-item.above-hidden {
+    width: 88%;
+    top: -15px;
+    opacity: 0;
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: top center;
+  }
+
+  .carousel-item.below-hidden {
+    width: 88%;
+    top: 515px;
+    opacity: 0;
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: bottom center;
+  }
+  
+  .carousel-title {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 0.75rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+    z-index: 5;
+    pointer-events: none;
+  }
+  
+  .carousel-content-overlay {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 58%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 15px;
+    color: white;
+    z-index: 4;
+  }
+
+  .image-counter {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    font-weight: 500;
+  }
+
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .indicator-dot.active {
+    background: white;
+    transform: scale(1.2);
+  }
+
+  .carousel-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .content-title {
+    font-size: 1.25rem;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+  }
+
+  .content-description {
+    font-size: 0.9rem;
+    margin: 0 0 12px 0;
+    opacity: 0.9;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .content-button {
+    background: rgb(228, 115, 78);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .content-button:hover {
+    background: rgb(208, 95, 58);
+    transform: translateY(-2px);
+  }
+  
