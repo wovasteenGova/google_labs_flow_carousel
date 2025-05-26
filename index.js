@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let isTransitioning = false;
     let lastScrollTime = 0;
   
+    let touchStartY = 0;
+    let touchEndY = 0;
+    const MIN_SWIPE_DISTANCE = 50;
+  
     // Sample content for each image
     const imageContent = Array.from({length: NUM_IMAGES}, (_, i) => ({
       title: `Scenic View ${i + 1}`,
@@ -221,6 +225,38 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       updateIndicators();
     }
+
+    // Add touch event listeners
+    carouselTrack.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    carouselTrack.addEventListener('touchmove', function(e) {
+      e.preventDefault(); // Prevent page scrolling while swiping carousel
+    }, { passive: false });
+
+    carouselTrack.addEventListener('touchend', function(e) {
+      touchEndY = e.changedTouches[0].clientY;
+      const swipeDistance = touchEndY - touchStartY;
+      
+      if (Math.abs(swipeDistance) < MIN_SWIPE_DISTANCE) return;
+      
+      const now = Date.now();
+      if (now - lastScrollTime < SCROLL_COOLDOWN || isTransitioning) return;
+
+      if (swipeDistance > 0) { // Swipe down (show previous)
+        if (activeIndex > 0) {
+          animateTo(activeIndex - 1);
+          lastScrollTime = now;
+        }
+      } else { // Swipe up (show next)
+        if (activeIndex < images.length - 1) {
+          animateTo(activeIndex + 1);
+          lastScrollTime = now;
+        }
+      }
+      restartAutoScroll();
+    }, { passive: true });
 
     // Initialize
     initializeCarouselItems();
