@@ -280,6 +280,16 @@ body {
       top: 280px;
     }
 
+    .carousel-item.above-hidden {
+      width: 92%;
+      top: -10px;
+    }
+
+    .carousel-item.below-hidden {
+      width: 92%;
+      top: 280px;
+    }
+
     .carousel-item img {
       border-radius: 12px;
     }
@@ -343,6 +353,14 @@ body {
 
     .carousel-item.below {
       height: 35px;
+      top: 235px;
+    }
+
+    .carousel-item.above-hidden {
+      top: -5px;
+    }
+
+    .carousel-item.below-hidden {
       top: 235px;
     }
 
